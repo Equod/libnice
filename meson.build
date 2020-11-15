@@ -197,6 +197,8 @@ if opt_cryptolib != 'openssl'
     crypto_dep = dependency('openssl', required: false,
       fallback: ['openssl', 'openssl_dep'])
     cdata.set('HAVE_OPENSSL', crypto_dep.found())
+    dl_dep = dependency('dl', required: true)
+    crypto_dep += [dl_dep]
   endif
 else
   crypto_dep = dependency('openssl', required: false)
